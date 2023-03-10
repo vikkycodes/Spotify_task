@@ -112,13 +112,13 @@ h4 {
     width: 10px;
 }
 
+/* main section */
+
 .main_container {
     width: 60%;
     background-color: #F1F1FB;
-    padding: 0 30px;
+    padding: 0 60px;
 }
-
-/* main section */
 
 nav {
     display: flex;
@@ -267,7 +267,6 @@ p img {
 .main_footer {
     display: flex;
     flex-direction: column;
-    gap: 10px;
     height: 100px;
     width: 90%;
     background-color: white;
@@ -279,7 +278,11 @@ p img {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 20px;
+    padding: 5px 25px 0 20px;
+}
+
+.left_functions {
+    width: 30%;
 }
 
 .left_functions img{
@@ -292,6 +295,7 @@ p img {
 }
 
 .center_functions {
+    width: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -309,13 +313,39 @@ p img {
 }
 
 .right_functions {
+    width: 30%;
     display: flex;
-    gap: 50px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
 }
 
 .right_functions img {
     height: 20px;
     width: 20px;
+}
+
+.right_functions input {
+    height: 3px;
+    width: 10px;
+}
+
+.input_function {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 40px;
+}
+
+.input_function p {
+    font-size: 12px;
+    font-weight: 900;
+}
+
+#mf_input {
+    height: 3px;
+    width: 80%;
 }
 
 /* extra section */
@@ -328,14 +358,14 @@ p img {
 .shortcuts {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     padding: 40px 0;
 }
 
 
 .shortcuts h2 {
     font-size: 20px;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
 }
 
 .shortcuts img {
@@ -349,7 +379,7 @@ p img {
 
 .shortcut_card {
     display: flex;
-    gap: 10px;
+    gap: 20px;
 }
 
 .chill_card, .hop_card, .accoustic_card, .india_card, .piano_card, .jazz_card {
@@ -384,6 +414,12 @@ p img {
 
 .jazz_card {
     width: 70px;
+}
+
+.fav_artist_card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .artist_data {
@@ -430,10 +466,11 @@ p img {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     margin-top: 50px;
     position: relative;
-    height: 400px;
+    padding-left: 12px;
+    border-radius: 10px;
+    height: 300px;
     width: 100%;
     background-color: white;
 }
@@ -445,12 +482,12 @@ p img {
 }
 
 .extrafooter h3 {
-    font-size: 17px;
+    font-size: 15px;
     margin-bottom: 5px;
 }
 
 .extrafooter p {
-    font-size: 13px;
+    font-size: 10px;
 }
 
 .plus {
@@ -462,8 +499,8 @@ p img {
     border: 2px solid grey;
     border-radius: 5px;
     position: absolute;
-    left: 85%;
-    bottom: 10px;
+    left: 90%;
+    bottom: 20px;
 }
 
 .plus img {

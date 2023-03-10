@@ -2,6 +2,7 @@ import React from "react";
 import RightFunctions from "./RightFunctions";
 import LeftFunctions from "./LeftFunctions";
 import CenterFunctions from "./CenterFunctions";
+import InputFunction from "./InputFunction";
 
 const MainFooter = () => {
   return (
@@ -11,6 +12,7 @@ const MainFooter = () => {
         <CenterFunctions />
         <RightFunctions />
       </div>
+      <InputFunction />
     </div>
   );
 };

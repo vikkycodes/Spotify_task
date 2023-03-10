@@ -5,6 +5,7 @@ const RightFunctions = () => {
   return (
     <div className="right_functions">
       <img src={speaker} alt="" />
+      <input type="range" />
       <img src={speaker} alt="" />
     </div>
   );

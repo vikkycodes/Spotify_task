@@ -4,7 +4,7 @@ import "../../css/styles.css";
 
 const FavArtist = () => {
   return (
-    <div>
+    <div className="fav_artist_card">
       <h2>Fav Artist</h2>
       <ArtistData />
     </div>
