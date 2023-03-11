@@ -33,6 +33,79 @@ h4 {
 
 .app {
     display: flex;
+    position: relative;
+}
+
+a, .logout_btn {
+    position: absolute !important;
+    left: -45% !important;
+}
+
+#login, .logout_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 10px;
+    height: 30px;
+    width: 100px;
+    border-radius: 30px;
+    background-color: #15111D;
+    color: #fff;
+    position: absolute;
+    left: 20px;
+    top: 30px;
+    transition: transform 0.5s ease-in-out;
+}
+
+#login:hover {
+    transform: perspective(100px) translateZ(1px);
+    cursor: pointer;
+    color: #15111D;
+    background-color: #fff;
+    border: 1px solid #15111D;    
+}
+
+.logout_btn:hover {
+    transform: perspective(100px) translateZ(1px);
+    cursor: pointer;
+    color: #15111D;
+    background-color: #fff;
+    border: 1px solid #15111D;
+}
+
+.App-header {
+    height: 100px;
+}
+
+.App-header h1 {
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    height: 50px;
+    width: 90%;
+}
+
+form input {
+    height: 40px;
+    width: 100%;
+}
+
+form button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    height: 30px;
+    width: 100px;
+    border-radius: 30px;
+    background-color: #15111D;
+    color: #fff;
 }
 
 .box {
@@ -58,9 +131,11 @@ h4 {
     width: 90%;
     color: #5B4B57;
     margin: 0;
+    transition: transform 0.5s ease;
 }
 
 .box h4:hover {
+    transform: perspective(100px) translateZ(5px);
     background-color: #15111D;
     color: #fff;
     border-radius: 10px;
@@ -85,7 +160,7 @@ h4 {
 
 .logo {
     width: 200px;
-    margin: 50px 0 100px 0;
+    margin: 100px 0 30px 0;
 }
 
 .sidebar_footer{
@@ -135,8 +210,8 @@ nav img {
 
 .search {
     position: absolute;
-    left: 15%;
-    width: 30px;
+    left: 16%;
+    width: 25px;
 }
 
 input {
@@ -228,19 +303,35 @@ p img {
     border-radius: 30px;
 }
 
-.title_row, .row {
+table {
+    width: 90%;
+}
+
+tr {
     display: flex;
     align-items: center;
     gap: 20px;
     height: 40px;
-}
-
-.row:hover {
-    cursor: pointer;
-    background-color: white;
-    box-shadow: 10px 10px 30px grey;
     border-radius: 10px;
     padding: 20px;
+    color: #5B4B57;
+}
+
+.data {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: 40px;
+    border-radius: 10px;
+    padding: 20px;
+    transition: transform 0.5s ease;
+}
+
+.data:hover {
+    transform: perspective(100px) translateZ(1px);
+    cursor: pointer;
+    background-color: white;
+    box-shadow: 10px 10px 30px rgba(128, 128, 128, 0.702);
 }
 
 .main_content {

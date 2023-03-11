@@ -1,4 +1,4 @@
-const MainData = () => [
+const MainData = (data) => [
   {
     id: "#",
     title: "TITLE",
