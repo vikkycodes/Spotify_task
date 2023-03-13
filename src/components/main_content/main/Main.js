@@ -1,62 +1,65 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AppContext } from "../../../utils/appContext";
 
 const Main = () => {
-  const MainData = [
-    {
-      id: "01",
-      title: "Priority",
-      artist: "Mos Def",
-      time: "1:25",
-      album: "The Ecstatic",
-    },
-    {
-      id: "02",
-      title: "Time Is Ticking Out",
-      artist: "The Cranberries",
-      time: "2:59",
-      album: "Wake Up And Smell t..",
-    },
-    {
-      id: "03",
-      title: "One Minute More",
-      artist: "Capital Cities",
-      time: "3:23",
-      album: "In A Tidal Wave Of M..",
-    },
-    {
-      id: "04",
-      title: "Second To None",
-      artist: "Supercell",
-      time: "5:50",
-      album: "Sorry Music Records Inc",
-    },
-    {
-      id: "05",
-      title: "Vick To The World",
-      artist: "CHICO",
-      time: "5:11",
-      album: "HoneyWorks",
-    },
-  ];
+  const [playlist, setPlaylist] = useState();
+
+  const {
+    user: { spotifyInstance },
+  } = useContext(AppContext);
+
+  useEffect(() => {
+    if (spotifyInstance) {
+      spotifyInstance.getUserPlaylists().then((playlists) => {
+        spotifyInstance
+          .getPlaylist(playlists.items[0].uri.split(":")[2])
+          .then((response) => setPlaylist(response));
+      });
+    }
+  }, [spotifyInstance]);
+
+  const playSong = (id) => {
+    spotifyInstance
+      .play({
+        uris: [`spotify:track:${id}`],
+      })
+      .then(
+        (res) => {
+          console.log({ res });
+        },
+        (error) => {
+          alert("Premium account required");
+        }
+      );
+  };
+
   return (
-    <main>
+    <main className="main_wrapper">
       <div className="main_content">
         <h1>My Playlist</h1>
         <p>Show All</p>
       </div>
-      <table>
-        <tr>
-          <th>#</th>
-          <th>TITLE</th>
-          <th>ARTIST</th>
-          <th>TIME</th>
-          <th>ALBUM</th>
-        </tr>
-      </table>
-      {MainData.map((MainData) => (
-        <div className="data">
-          <p>{MainData.id}</p> <p>{MainData.title}</p> <p>{MainData.artist}</p>{" "}
-          <p>{MainData.time}</p> <p>{MainData.album}</p>
+      <div className="playlist_header">
+        <th>#</th>
+        <th className="track_name">TITLE</th>
+        <th className="artist">ARTIST</th>
+        <th className="track_time">TIME</th>
+        <th className="album">ALBUM</th>
+      </div>
+
+      {!playlist && <h2 className="no_content">You have no playlist</h2>}
+
+      {playlist?.tracks?.items.map((item, idx) => (
+        <div
+          className="playlist_wrapper"
+          key={item.track.id}
+          onClick={() => playSong(item.track.id)}
+        >
+          <p className="sn">{idx + 1}</p>
+          <p className="track_name">{item.track.name}</p>
+          <p className="artist">{item.track.artists[0].name}</p>
+          <p className="track_time">{item.track.duration_ms}</p>
+          <p className="album">{item.track.album.name}</p>
         </div>
       ))}
     </main>
