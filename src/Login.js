@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import previous from "../src/images/previous.png";
+import ArtistModal from "./components/main_content/ArtistModal";
 
 function Login() {
   const CLIENT_ID = "b39c9c2f4fa346a69e4cdbcafefd5185";
@@ -11,6 +12,7 @@ function Login() {
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
   const [artists, setArtists] = useState([]);
+  const [isArtistModalOpen, setIsArtistModalOpen] = useState();
 
   // const getToken = () => {
   //     let urlParams = new URLSearchParams(window.location.hash.replace("#","?"));
@@ -57,19 +59,6 @@ function Login() {
     setArtists(data.artists.items);
   };
 
-  const renderArtists = () => {
-    return artists.map((artist) => (
-      <div key={artist.id}>
-        {artist.images.length ? (
-          <img width={"100%"} src={artist.images[0].url} alt="" />
-        ) : (
-          <div>No Image</div>
-        )}
-        {artist.name}
-      </div>
-    ));
-  };
-
   return (
     <div className="App">
       <header className="App-header">
@@ -101,7 +90,7 @@ function Login() {
             artist
           </h1>
         )}
-        {renderArtists()}
+        <ArtistModal artists={artists} />
       </header>
     </div>
   );

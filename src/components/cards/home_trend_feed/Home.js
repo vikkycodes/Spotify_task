@@ -8,18 +8,15 @@ const Home = () => {
   return (
     <div className="box">
       <h4>
-        {" "}
-        <img src={home} alt="" />
+        <img src={home} alt="" className="sidebar_icon" />
         Home
       </h4>
       <h4>
-        {" "}
-        <img src={trend} alt="" />
+        <img src={trend} alt="" className="sidebar_icon" />
         Trends
       </h4>
       <h4>
-        {" "}
-        <img src={feed} alt="" />
+        <img src={feed} alt="" className="sidebar_icon" />
         Feed
       </h4>
     </div>

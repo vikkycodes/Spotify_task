@@ -8,16 +8,14 @@ const Discover = () => {
     <div className="box">
       <p>Discover</p>
       <h4>
-        {" "}
-        <img src={new_and_noteable} alt="" /> New and Notable
+        <img src={new_and_noteable} alt="" className="sidebar_icon" /> New and
+        Notable
       </h4>
       <h4>
-        {" "}
-        <img src={calendar} alt="" /> Release Calender
+        <img src={calendar} alt="" className="sidebar_icon" /> Release Calender
       </h4>
       <h4>
-        {" "}
-        <img src={event} alt="" /> Events
+        <img src={event} alt="" className="sidebar_icon" /> Events
       </h4>
     </div>
   );

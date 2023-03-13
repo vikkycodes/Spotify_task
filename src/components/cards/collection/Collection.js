@@ -8,16 +8,14 @@ const Collection = () => {
     <div className="box">
       <p>New Colloection</p>
       <h4>
-        {" "}
-        <img src={favorite_song} alt="" /> Favorite Songs
+        <img src={favorite_song} alt="" className="sidebar_icon" /> Favorite
+        Songs
       </h4>
       <h4>
-        {" "}
-        <img src={artist} alt="" /> Artist
+        <img src={artist} alt="" className="sidebar_icon" /> Artist
       </h4>
       <h4>
-        {" "}
-        <img src={albums} alt="" /> Albums
+        <img src={albums} alt="" className="sidebar_icon" /> Albums
       </h4>
     </div>
   );

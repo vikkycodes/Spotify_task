@@ -1,6 +1,6 @@
 import React from "react";
 
-const InputFunction = () => {
+const PlayFunction = () => {
   return (
     <div className="input_function">
       <p>0:43</p>
@@ -10,4 +10,4 @@ const InputFunction = () => {
   );
 };
 
-export default InputFunction;
+export default PlayFunction;
