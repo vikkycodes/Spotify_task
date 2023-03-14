@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { AppContext } from "../../../utils/appContext";
+import { AppContext } from "../../utils/appContext";
 
 const Main = () => {
   const [playlist, setPlaylist] = useState();

@@ -1,6 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
-import previous from "../src/images/previous.png";
 import ArtistModal from "./components/main_content/ArtistModal";
 import {
   AUTH_ENDPOINT,
@@ -8,8 +7,8 @@ import {
   REDIRECT_URI,
   RESPONSE_TYPE,
   Scopes,
-} from "./constants";
-import { AppContext, defaultState } from "./utils/appContext";
+} from "./components/constants/index";
+import { AppContext, defaultState } from "./components/utils/appContext";
 import SpotifyWebApi from "spotify-web-api-js";
 
 function Login() {

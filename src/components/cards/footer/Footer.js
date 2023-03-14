@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import sidebar_footer_img from "../../../images/sidebar_footer_img.jpg";
 import more_than from "../../../images/more_than.png";
 import "../../css/styles.css";
-import { AppContext } from "../../../utils/appContext";
+import { AppContext } from "../../utils/appContext";
 
 const Footer = () => {
   const { user } = useContext(AppContext);

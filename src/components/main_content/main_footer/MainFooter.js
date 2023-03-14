@@ -3,7 +3,7 @@ import RightFunctions from "./RightFunctions";
 import LeftFunctions from "./LeftFunctions";
 import CenterFunctions from "./CenterFunctions";
 import PlayFunction from "./PlayFunction";
-import { AppContext } from "../../../utils/appContext";
+import { AppContext } from "../../utils/appContext";
 
 const MainFooter = () => {
   const {

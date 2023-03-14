@@ -3,7 +3,7 @@ import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
 import SkipNextIcon from "@material-ui/icons/SkipNext";
 import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
-import { AppContext } from "../../../utils/appContext";
+import { AppContext } from "../../utils/appContext";
 
 const CenterFunctions = () => {
   const { user, setUser } = useContext(AppContext);
