@@ -1,29 +1,55 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import previous from "../src/images/previous.png";
 import ArtistModal from "./components/main_content/ArtistModal";
+import {
+  AUTH_ENDPOINT,
+  CLIENT_ID,
+  REDIRECT_URI,
+  RESPONSE_TYPE,
+  Scopes,
+} from "./constants";
+import { AppContext, defaultState } from "./utils/appContext";
+import SpotifyWebApi from "spotify-web-api-js";
 
 function Login() {
-  const CLIENT_ID = "b39c9c2f4fa346a69e4cdbcafefd5185";
-  const REDIRECT_URI = "http://localhost:3000";
-  const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
-  const RESPONSE_TYPE = "token";
-
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
   const [artists, setArtists] = useState([]);
   const [isArtistModalOpen, setIsArtistModalOpen] = useState();
+  const node = useRef(null);
+  const { setUser, user } = useContext(AppContext);
 
-  // const getToken = () => {
-  //     let urlParams = new URLSearchParams(window.location.hash.replace("#","?"));
-  //     let token = urlParams.get('access_token');
-  // }
+  const s = new SpotifyWebApi();
+
+  const handleOutsideClick = (e) => {
+    if (
+      node.current &&
+      !node.current.contains(e.target) &&
+      e.target.parentNode.id !== "artist_modal"
+    ) {
+      setIsArtistModalOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    s.setAccessToken(token);
+    setUser({ ...user, spotifyInstance: s });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token]);
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const hash = window.location.hash;
     let token = window.localStorage.getItem("token");
-
-    // getToken()
 
     if (!token && hash) {
       token = hash
@@ -36,11 +62,33 @@ function Login() {
       window.localStorage.setItem("token", token);
     }
 
-    setToken(token);
+    if (token) {
+      setToken(token);
+      fetchProfile(token);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const fetchProfile = async (token) => {
+    try {
+      const result = await axios.get("https://api.spotify.com/v1/me", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      setUser({
+        ...user,
+        name: result.data.display_name,
+        image: result.data.images[0],
+        spotifyInstance: s,
+      });
+    } catch (error) {
+      alert(error?.response?.data?.error?.message ?? error);
+    }
+  };
 
   const logout = () => {
     setToken("");
+    setUser(defaultState.user);
     window.localStorage.removeItem("token");
   };
 
@@ -57,23 +105,12 @@ function Login() {
     });
 
     setArtists(data.artists.items);
+    setIsArtistModalOpen(true);
   };
 
   return (
     <div className="App">
-      <header className="App-header">
-        {!token ? (
-          <a
-            id="login"
-            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
-          >
-            Login to Spotify
-          </a>
-        ) : (
-          <button className="logout_btn" onClick={logout}>
-            Logout
-          </button>
-        )}
+      <header className="App-header" ref={node}>
         {token ? (
           <form onSubmit={searchArtists}>
             <input
@@ -84,13 +121,22 @@ function Login() {
             <button type={"submit"}>Search</button>
           </form>
         ) : (
-          <h1>
-            {" "}
-            <img src={previous} alt="" /> Login to search for your favorite
-            artist
-          </h1>
+          <h1>Login to search for your favorite artist</h1>
         )}
-        <ArtistModal artists={artists} />
+        {!token ? (
+          <a
+            id="login"
+            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&scope=${Scopes}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&show_dialog=true`}
+          >
+            Login to Spotify
+          </a>
+        ) : (
+          <button className="logout_btn" onClick={logout}>
+            Logout
+          </button>
+        )}
+        {isArtistModalOpen && <ArtistModal artists={artists} />}
+        <script src="https://sdk.scdn.co/spotify-player.js"></script>
       </header>
     </div>
   );
