@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
-import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
-import SkipNextIcon from "@material-ui/icons/SkipNext";
-import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
+import nextIcon from "../../../images/next.png";
+import previousIcon from "../../../images/previous.png";
+import playIcon from "../../../images/playIcon.png";
+import PauseIcon from "../../../images/pause.png";
 import { AppContext } from "../../utils/appContext";
 
 const CenterFunctions = () => {
@@ -48,21 +48,35 @@ const CenterFunctions = () => {
 
   return (
     <div className="center_functions">
-      <SkipPreviousIcon onClick={skipNext} className="player_action" />
+      <img
+        src={previousIcon}
+        onClick={skipNext}
+        className="player_action"
+        alt=""
+      />
       {isPlaying ? (
-        <PauseCircleOutlineIcon
+        <img
+          src={PauseIcon}
           onClick={handlePlayPause}
           fontSize="large"
           className="player_action"
+          alt=""
         />
       ) : (
-        <PlayCircleOutlineIcon
+        <img
+          src={playIcon}
           onClick={handlePlayPause}
           fontSize="large"
           className="player_action"
+          alt=""
         />
       )}
-      <SkipNextIcon onClick={skipPrevious} className="player_action" />
+      <img
+        src={nextIcon}
+        onClick={skipPrevious}
+        className="player_action"
+        alt=""
+      />
     </div>
   );
 };
