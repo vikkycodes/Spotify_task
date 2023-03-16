@@ -11,9 +11,10 @@ const Main = () => {
   useEffect(() => {
     if (spotifyInstance) {
       spotifyInstance.getUserPlaylists().then((playlists) => {
-        spotifyInstance
-          .getPlaylist(playlists.items[0].uri.split(":")[2])
-          .then((response) => setPlaylist(response));
+        playlists.items.length > 0 &&
+          spotifyInstance
+            .getPlaylist(playlists.items[0]?.uri?.split(":")[2])
+            .then((response) => setPlaylist(response));
       });
     }
   }, [spotifyInstance]);
@@ -40,11 +41,11 @@ const Main = () => {
         <p>Show All</p>
       </div>
       <div className="playlist_header">
-        <th>#</th>
-        <th className="track_name">TITLE</th>
-        <th className="artist">ARTIST</th>
-        <th className="track_time">TIME</th>
-        <th className="album">ALBUM</th>
+        <p>#</p>
+        <p className="track_name">TITLE</p>
+        <p className="artist">ARTIST</p>
+        <p className="track_time">TIME</p>
+        <p className="album">ALBUM</p>
       </div>
 
       {!playlist && <h2 className="no_content">You have no playlist</h2>}

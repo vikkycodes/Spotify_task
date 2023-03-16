@@ -2,18 +2,17 @@ import React from "react";
 import ExtraContainer from "./components/extra/extra_container/ExtraContainer";
 import MainContainer from "./components/main_content/container/MainContainer";
 import SideBar from "./components/sidebar/SideBar";
-// import { AudioPlayerProvider } from "react-use-audio-player";
+import { AppProvider } from "../src/components/utils/appContext";
 
 const App = () => {
   return (
-    <div className="app">
-      <SideBar />
-      <MainContainer />
-      {/* <AudioPlayerProvider>
-        <AudioPlayer file="meow.mp3" />
-      </AudioPlayerProvider> */}
-      <ExtraContainer />
-    </div>
+    <AppProvider>
+      <div className="app">
+        <SideBar />
+        <MainContainer />
+        <ExtraContainer />
+      </div>
+    </AppProvider>
   );
 };
 
